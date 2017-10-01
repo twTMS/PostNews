@@ -74,3 +74,4 @@ Feature 撰寫的說明請參考 [Github 上的 Wiki](https://github.com/cucumbe
 [5]: https://istanbul.js.org/
 [6]: https://github.com/segmentio/nightmare
 [7]: https://github.com/cucumber-attic/gherkin
+[8]: https://segmentfault.com/a/1190000006670084
