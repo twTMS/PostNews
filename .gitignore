@@ -3,5 +3,5 @@ bower_components/
 *.log
 
 build/
-dist/
+dist/js/
 *-lock.json
