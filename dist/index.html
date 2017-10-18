@@ -1,61 +1,123 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Shopping Cart</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>A cool little search box</title>
+  <!--<script src="https://s.codepen.io/assets/libs/modernizr.js" type="text/javascript"></script>
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">-->
+
+
+  <style>
+    body {
+      background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/41294/hero.jpg) no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    .search {
+      max-width: 500px;
+      height: 35px;
+      margin: 0 auto;
+      margin-top: 200px;
+      margin-bottom: 50px;
+      background: #444;
+      background: rgba(0, 0, 0, .2);
+      border-radius: 3px;
+      border: 1px solid #fff;
+    }
+
+    .search input {
+      width: 80%;
+      padding: 10px 5px;
+      float: left;
+      color: #ccc;
+      border: 0;
+      background: transparent;
+      border-radius: 3px 0 0 3px;
+    }
+
+    .search input:focus {
+      outline: 0;
+      background: transparent;
+    }
+
+    .search button {
+      position: relative;
+      float: right;
+      border: 0;
+      padding: 0;
+      cursor: pointer;
+      height: 35px;
+      width: 20%;
+      color: #fff;
+      background: transparent;
+      border-left: 1px solid #fff;
+      border-radius: 0 3px 3px 0;
+    }
+
+    .search button:hover {
+      background: #fff;
+      color: #444;
+    }
+
+    .search button:active {
+      box-shadow: 0px 0px 12px 0px rgba(225, 225, 225, 1);
+    }
+
+    .search button:focus {
+      outline: 0;
+    }
+
+    .demo_btn {
+      display: block;
+      position: relative;
+      margin: 0 auto;
+      border: 0;
+      padding: 0;
+      cursor: pointer;
+      height: 35px;
+      width: 100px;
+      color: #fff;
+      background: transparent;
+      border: 1px solid #fff;
+      border-radius: 10px;
+      text-align: center;
+      line-height: 35px;
+      text-decoration: none;
+    }
+  </style>
+
+  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>-->
 
 </head>
 
 <body>
-    <div class="container">
-        <h1>Shopping Cart</h1>
-        <div class="row">
-            <div class="col-md-4 product" data-id="1">
-                <img src="http://placehold.it/300x300" class="img-responsive">
-                <h3>Product 1</h3>
-                <p>200</p>
-                <input type="number" name="qty" value="0" min="0" />
-            </div>
-            <div class="col-md-4 product" data-id="2">
-                <img src="http://placehold.it/300x300" class="img-responsive">
-                <h3>Product 2</h3>
-                <p>500</p>
-                <input type="number" name="qty" value="0" min="0" />
-            </div>
-            <div class="col-md-4 product" data-id="3">
-                <img src="http://placehold.it/300x300" class="img-responsive">
-                <h3>Product 3</h3>
-                <p>700</p>
-                <input type="number" name="qty" value="0" min="0" />
-            </div>
-        </div>
-        <hr />
-        <div class="row">
-            <div class="col-md-12 info-column">
-                <label for="memberLevel">會員等級</label>
-                <select name="memberLevel">
-                   <option value="VIP">VIP</option>
-                   <option value="Normal">Normal</option>
-               </select>
-            </div>
-        </div>
-        <hr />
-        <div class="row">
-            <div class="col-md-12 info-column">
-                <label for="totalPrice">總價格:</label>
-                <span id="totalPrice">0</span><br />
-                <label for="totalQty">總件數:</label>
-                <span id="totalQty">0</span><br />
-                <label for="price">折扣後價格:</label>
-                <span id="price">0</span>
-            </div>
-        </div>
-    </div>
+  <div class="search">
+    <input type="search" placeholder="Json Link..." required>
+    <button id="btn_search">Get</button>
+  </div>
+  <a class="demo_btn" href="">Demo</a>
+  <script src='./js/jquery.min.js'></script>
+  <script>
+    (function ($) {
 
-    <script src="js/bundle.js"></script>
+      $('#btn_search').click(function () {
+        $.getJSON($('.search input').val(), function (data) {
+        })
+          .error(function () { alert('輸入錯誤'); })
+          .success(function (data) {
+            location.href = 'cards.html?listid=' + data.lists[0].id + '&json=' + $('.search input').val();
+          });
+      });
+
+      $.getJSON('https://trello.com/b/y3bYmx6f.json', function (data) {
+        $('.demo_btn').attr('href', 'cards.html?listid=' + data.lists[0].id + '&json=https://trello.com/b/y3bYmx6f.json');
+      });
+    })(jQuery);
+  </script>
 </body>
 
 </html>
